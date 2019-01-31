@@ -11,12 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/', 'PersonController@index');
+
+Route::get('/register', 'PersonController@register');
+
+Route::get('/home', function () {
+    return view('home');
 });
 
-Route::get('/register', function () {
-    return view('register');
+Route::get('/inbox', function () {
+    return view('inbox');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/login', 'PersonController@login');

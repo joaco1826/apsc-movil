@@ -8,12 +8,15 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap'
 
+@import "sweetalert"
+
 body
   font-family: "Titillium", sans-serif
   font-weight: 400
   margin: 0
-  padding: 0
+  padding: 0 0 53px 0
   line-height: 1.4
+  position: relative
 
 .container-fluid
   padding: 0
@@ -22,12 +25,13 @@ body
   background: url("/img/fondo-inicio.jpg") no-repeat bottom center
   background-size: cover
   width: 100%
-  height: 100vh
+  min-height: 100vh
   position: relative
+  padding-top: 2rem
 
 .logo-login
   max-width: 250px
-  margin: 2rem auto
+  margin: 0 auto 2rem
   display: table
 
 .content
@@ -48,11 +52,14 @@ body
 p
   margin: 0
 
+a
+  color: inherit
+
 .login
   width: 100%
   padding: 1.7rem 1rem
   background: $white
-  margin-top: 2rem
+  //margin-top: 2rem
 
 .form-control::placeholder
   font-size: 16px
@@ -96,3 +103,133 @@ p
   width: 100%
   position: absolute
   bottom: 0
+
+.logo-header
+  max-width: 158px
+  width: 100%
+
+.menu
+  float: right
+  width: 38px
+  margin-top: .5rem
+  div
+    width: 100%
+    height: 4px
+    border-radius: 2px
+    background: $c4d
+    margin-bottom: .6rem
+    &:last-child
+      margin-bottom: 0
+
+.header
+  padding: 1.2rem 0
+  border-bottom: 10px solid $pr
+
+.welcome
+  color: $pr
+  font-size: 20px
+  text-align: center
+  margin: 1.5rem auto
+
+.img-buzon
+  margin: 0 auto
+  display: table
+
+.content-email
+  border: 1px solid rgba($b0, .4)
+  padding: 1rem 0 2.5rem
+  p
+    max-width: 263px
+    margin: 0 auto 1.7rem
+    text-align: center
+    color: $tx
+    font-size: 15px
+
+.btn-apsc
+  background: $pr
+  padding: .6rem 1rem
+  border-radius: 0 0 18px 0
+  min-width: 150px
+  color: $white
+  font-weight: 600
+  font-size: 18px
+  border: 0
+  outline: 0
+
+.content-menu
+  width: 100%
+  background: $white
+  padding: 1.2rem
+  position: fixed
+  top: 105px
+  z-index: 5
+  left: -100%
+  opacity: 0
+  .img-profile
+    display: table
+    margin: 0 auto 1.5rem
+    width: 150px
+    height: 150px
+    object-fit: cover
+    border-radius: 50%
+  .title
+    color: $tx
+    font-weight: 600
+    font-size: 18px
+    text-align: center
+  .sub-title
+    color: $pr
+    font-size: 18px
+    text-align: center
+  .nav-hv
+    font-size: 18px
+    font-weight: 600
+    color: $tx
+    text-align: center
+    border-bottom: 1px solid rgba($b0, .6)
+    padding: .3rem 0
+    span
+      color: $pr
+  .logout
+    margin-top: 3rem
+    color: $pr
+    font-size: 18px
+    font-weight: 600
+    text-align: center
+  .help-menu
+    text-align: center
+    font-size: 14px
+    color: $tx
+    margin-top: 2rem
+  .terms
+    font-weight: 600
+    font-size: 14px
+    text-align: center
+    color: $pr
+    margin-top: 1rem
+
+.text-ins
+  max-width: 263px
+  margin: 1.5rem auto
+  text-align: center
+  p
+    font-size: 18px
+    color: $tx
+    font-weight: 600
+    &:last-child
+      font-weight: 400
+      font-size: 14px
+
+.opc-hv
+  width: 90%
+  margin: 0 auto
+  border-bottom: 1px solid rgba($b0, .6)
+  padding: .5rem 0
+  font-size: 18px
+  font-weight: 300
+  color: $tx
+
+.close-menu
+  display: none
+  float: right
+  margin-top: .4rem

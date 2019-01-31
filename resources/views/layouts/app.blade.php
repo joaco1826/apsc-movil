@@ -20,10 +20,10 @@
                 @yield('content')
             </div>
         </div>
-        <div class="footer">
-            <div class="row align-items-center">
-                <div class="col-9">©{{ date("Y") }} APSC. Todos los derechos reservados.</div>
-            </div>
+    </div>
+    <div class="footer">
+        <div class="row align-items-center">
+            <div class="col-9">©{{ date("Y") }} APSC. Todos los derechos reservados.</div>
         </div>
     </div>
     <!-- Scripts -->
