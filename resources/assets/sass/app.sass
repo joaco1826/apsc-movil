@@ -7,8 +7,20 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap'
+@import '~bootstrap4-datetimepicker/src/sass/bootstrap-datetimepicker'
+@import url('https://use.fontawesome.com/releases/v5.0.6/css/all.css')
 
 @import "sweetalert"
+
+.sr-only
+  position: absolute
+  width: 1px
+  height: 1px
+  margin: -1px
+  padding: 0
+  overflow: hidden
+  clip: rect(0,0,0,0)
+  border: 0
 
 body
   font-family: "Titillium", sans-serif
@@ -233,3 +245,12 @@ a
   display: none
   float: right
   margin-top: .4rem
+
+.form-control.custom
+  border: 0
+  border-bottom: 1px solid $b0
+  &::placeholder
+    color: $tx
+    font-weight: 300
+    font-size: 17px
+    letter-spacing: normal

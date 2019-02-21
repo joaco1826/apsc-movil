@@ -9,4 +9,5 @@ try {
 
     require('bootstrap');
     require('sweetalert');
+    require('bootstrap4-datetimepicker');
 } catch (e) {}

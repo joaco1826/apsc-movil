@@ -23,4 +23,7 @@ Route::get('/inbox', function () {
     return view('inbox');
 });
 
+Route::get('/curriculum-vitae', 'PersonController@create');
+
 Route::post('/login', 'PersonController@login');
+Route::post('/register', 'PersonController@registerPerson');

@@ -12,6 +12,7 @@ class Person extends Model
         "per_cod",
         "per_fot",
         "per_tid",
+        "per_ide",
         "per_pno",
         "per_sno",
         "per_pap",

@@ -5,10 +5,10 @@
         @csrf
         <div class="login">
             <div class="form-group">
-                <input type="text" name="user" class="form-control" placeholder="Usuario">
+                <input type="text" name="user" class="form-control" placeholder="Usuario" required>
             </div>
             <div class="form-group mb-0">
-                <input type="password" name="password" class="form-control" placeholder="Contraseña">
+                <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
             </div>
         </div>
         <div class="franja mt-2">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
+use App\Models\City;
 use Illuminate\Http\Request;
 use App\Models\Person;
 use App\Models\Type;
@@ -48,6 +50,45 @@ class PersonController extends Controller
         }
     }
 
+    public function registerPerson(Request $request)
+    {
+        request()->validate([
+            "per_pno" => "required|string|max:30",
+            "per_pap" => "required|string|max:30",
+            "per_ide" => "required|string|max:30|unique:personas",
+            "per_ema" => "required|email|max:60|unique:personas",
+            "per_cel" => "required|string|max:30",
+            "per_fre" => "required|integer",
+            "req_cod" => "required|integer",
+        ]);
+
+        $person = Person::create([
+            "per_pno" => $request->per_pno,
+            "per_sno" => $request->per_sno,
+            "per_pap" => $request->per_pap,
+            "per_sap" => $request->per_sap,
+            "per_ide" => $request->identificacion,
+            "per_ema" => $request->email,
+            "per_cel" => $request->per_cel,
+            "per_fre" => $request->per_fre,
+            "per_con" => $request->identificacion,
+            "per_est" => 1,
+            "per_fin" => date("Y-m-d H:i:s")
+        ]);
+        if ($person) {
+            session(['person' => $person]);
+            Application::create([
+                "per_cod" => $person->id,
+                "req_cod" => $request->req_cod,
+                "pos_fec" => date("Y-m-d"),
+                "pos_est" => 1
+            ]);
+            return response(json_encode($person), 201)->header('Content-Type', 'text/json');
+        } else {
+            return response(json_encode(['message' => 'A ocurrido algo inesperado, por favor intente más tarde']), 400)->header('Content-Type', 'text/json');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +96,18 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('person', [
+            "types" => Type::where("tip_tip", "identificacion")->get(),
+            "cities" => City::orderBy('mun_nom')->get(),
+            "stratas" => Type::where("tip_tip", "eto")->get(),
+            "bloods" => Type::where("tip_tip", "sangre")->get(),
+            "genders" => Type::where("tip_tip", "sexo")->get(),
+            "civil" => Type::where("tip_tip", "civil")->get(),
+            "height" => Type::where("tip_tip", "est")->get(),
+            "shirt_size" => Type::where("tip_tip", "cam")->get(),
+            "pants_size" => Type::where("tip_tip", "pant")->get(),
+            "shoes_size" => Type::where("tip_tip", "zap")->get(),
+        ]);
     }
 
     /**
