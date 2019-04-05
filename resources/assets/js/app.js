@@ -75,4 +75,33 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#frmPerson').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            async:true,
+            type: "POST",
+            dataType: "json",
+            url:"/curriculum-vitae",
+            data: $(this).serialize(),
+            statusCode: {
+                201: function(data) {
+                    location.href="/home";
+                },
+                400: function (data) {
+                    swal('¡Ups!', data.responseJSON.message, 'warning')
+                },
+                500: function (data) {
+                    swal('¡Ups!', 'Algo salió mal, contacte a su administrador', 'warning')
+                },
+
+                422: function (data) {
+                    $.each(data.responseJSON.errors, function (key, text) {
+                        swal(key, text, 'warning');
+                        return false;
+                    });
+                }
+            }
+        });
+    });
 });

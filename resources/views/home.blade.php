@@ -6,11 +6,13 @@
             <p>Para continuar con el proceso complete todos los campos a continuación:</p>
         </div>
         <div class="opc-hv mt-5">
-            <div class="row align-content-between align-items-center">
-                <div class="col-2 text-center"><img src="{{ asset("img/icon1.png") }}" alt=""></div>
-                <div class="col-8">Datos personales</div>
-                <div class="col-2"><img src="{{ asset("img/icon5.png") }}" alt=""></div>
-            </div>
+            <a href="{{ url("curriculum-vitae") }}">
+                <div class="row align-content-between align-items-center">
+                    <div class="col-2 text-center"><img src="{{ asset("img/icon1.png") }}" alt=""></div>
+                    <div class="col-8">Datos personales</div>
+                    <div class="col-2"><img src="{{ asset("img/icon5.png") }}" alt=""></div>
+                </div>
+            </a>
         </div>
         <div class="opc-hv">
             <div class="row align-content-between align-items-center">

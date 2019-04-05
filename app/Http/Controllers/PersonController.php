@@ -103,10 +103,13 @@ class PersonController extends Controller
             "bloods" => Type::where("tip_tip", "sangre")->get(),
             "genders" => Type::where("tip_tip", "sexo")->get(),
             "civil" => Type::where("tip_tip", "civil")->get(),
+            "academic" => Type::where("tip_tip", "niv")->get(),
             "height" => Type::where("tip_tip", "est")->get(),
             "shirt_size" => Type::where("tip_tip", "cam")->get(),
             "pants_size" => Type::where("tip_tip", "pant")->get(),
             "shoes_size" => Type::where("tip_tip", "zap")->get(),
+            "shoes_size" => Type::where("tip_tip", "zap")->get(),
+            "auth" => session()->get('person'),
         ]);
     }
 
