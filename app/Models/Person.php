@@ -8,6 +8,8 @@ class Person extends Model
 {
     protected $table  = "personas";
 
+    protected  $primaryKey = "per_cod";
+
     protected $fillable = [
         "per_cod",
         "per_fot",

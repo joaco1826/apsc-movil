@@ -23,7 +23,20 @@ Route::get('/inbox', function () {
     return view('inbox');
 });
 
+Route::get('/options', function () {
+    return view('options');
+});
+
+Route::get('/postulation', function () {
+    return view('postulation');
+});
+
+Route::get('/vacants', 'PersonController@vacants');
+Route::get('/vacant/{id}', 'PersonController@vacant')->where(['id' => '[0-9-]+']);
+
 Route::get('/curriculum-vitae', 'PersonController@create');
+Route::post('/curriculum-vitae', 'PersonController@store');
+Route::post('/postulate', 'PersonController@store');
 
 Route::post('/login', 'PersonController@login');
 Route::post('/register', 'PersonController@registerPerson');

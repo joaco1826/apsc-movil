@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\City;
+use App\Models\Vacant;
 use Illuminate\Http\Request;
 use App\Models\Person;
 use App\Models\Type;
@@ -125,9 +126,7 @@ class PersonController extends Controller
            "per_tid" => "required|integer",
            "per_ide" => "required|string|max:15",
            "per_pno" => "required|string|max:30",
-           "per_sno" => "required|string|max:30",
            "per_pap" => "required|string|max:30",
-           "per_sap" => "required|string|max:30",
            "per_ema" => "required|string|max:60",
            "per_fna" => "required|date",
            "per_cna" => "required|integer",
@@ -135,11 +134,20 @@ class PersonController extends Controller
            "per_cex" => "required|integer",
            "per_dir" => "required|string|max:80",
            "per_bar" => "required|string|max:40",
-           "per_tel" => "required|string|max:30",
-           "per_ato" => "required|string|max:30",
            "per_cel" => "required|string|max:30",
            "per_ciu" => "required|integer",
         ]);
+
+        $auth = session()->get('person');
+
+        Person::find($auth->per_cod)->update($request->all());
+        $person = Person::find($auth->per_cod);
+        session()->put('person', $person);
+        if ($person) {
+            return response(json_encode($person), 201)->header('Content-Type', 'text/json');
+        } else {
+            return response(json_encode(['message' => 'A ocurrido algo inesperado, por favor intente más tarde']), 400)->header('Content-Type', 'text/json');
+        }
     }
 
     /**
@@ -185,5 +193,19 @@ class PersonController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function vacants()
+    {
+        return view('vacants', [
+            "vacants" => Vacant::where("req_fex", ">=", date("Y-m-d"))->orderByDesc("req_fec")->get()
+        ]);
+    }
+
+    public function vacant($id)
+    {
+        return view('vacant', [
+            "vacant" => Vacant::find($id)
+        ]);
     }
 }
