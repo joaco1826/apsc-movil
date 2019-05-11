@@ -16,4 +16,9 @@ class Postulation extends Model
         "pos_fec",
         "pos_est"
     ];
+
+    public function vacant()
+    {
+        return $this->belongsTo("App\Models\Vacant", "req_cod", "req_cod");
+    }
 }

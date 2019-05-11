@@ -19,6 +19,6 @@
                 <div class="col-10 text-options">Anexar documento para continuar con el  proceso</div>
             </div>
         </div>
-        <a class="see-vacant" href="">Ver vacantes afines a mi perfil</a>
+        <a class="see-vacant" href="{{ url("/vacants") }}">Ver vacantes afines a mi perfil</a>
     </div>
 @endsection

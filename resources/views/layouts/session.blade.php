@@ -41,9 +41,11 @@
         @endif
         <p class="title">{{ ucwords(mb_strtolower($person->per_pno . " " . $person->per_sno . " " . $person->per_pap . " " . $person->per_sap)) }}</p>
         <p class="sub-title">Finance Arrow Ltda.</p>
-        <div class="nav-hv mt-5"><a href=""><span>(20%)</span> Hoja de vida</a></div>
-        <div class="nav-hv border-0"><a href=""><span>(4)</span> Vacantes disponibles</a></div>
-        <div class="logout"><img src="{{ asset("img/close.png") }}" alt="logout"> Cerrar sesión</div>
+        <div class="nav-hv mt-5"><a href="{{ url("/home") }}"><span>(20%)</span> Hoja de vida</a></div>
+        <div class="nav-hv border-0"><a href="{{ url("/vacants") }}"><span>(4)</span> Vacantes disponibles</a></div>
+            <a href="{{ url("/logout") }}">
+                <div class="logout"><img src="{{ asset("img/close.png") }}" alt="logout"> Cerrar sesión</div>
+            </a>
         <div class="help-menu"><img src="{{ asset("img/help.png") }}" alt="help"> ¿Necesitas ayuda?</div>
         <p class="terms">Términos y condiciones ı Políticas de privacidad </p>
     </div>

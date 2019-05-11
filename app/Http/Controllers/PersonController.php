@@ -208,4 +208,10 @@ class PersonController extends Controller
             "vacant" => Vacant::find($id)
         ]);
     }
+
+    public function logout()
+    {
+        session()->flush();
+        return redirect("/");
+    }
 }

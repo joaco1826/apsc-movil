@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class VacantController extends Controller
 {
-    public function postulate(Request $request) {
+    public function postulate(Request $request)
+    {
         request()->validate([
             "req_cod" => "required|integer"
         ]);
@@ -23,5 +24,14 @@ class VacantController extends Controller
 
         return response(json_encode(["message" => "Saved"]), 201)->header('Content-Type', 'text/json');
 
+    }
+
+    public function postulations()
+    {
+        $auth = session()->get("person");
+        $postulations = Postulation::where("per_cod", $auth->per_cod)->get();
+        return view("postulations", [
+           "vacants" => $postulations
+        ]);
     }
 }

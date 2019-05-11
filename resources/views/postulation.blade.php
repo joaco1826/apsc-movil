@@ -14,7 +14,7 @@
     <div class="row align-items-center">
         <div class="col-7">
             <div class="franja mt-2">
-                <a href=""><button type="button" class="b-sesion"
+                <a href="{{ url("/options") }}"><button type="button" class="b-sesion"
                         style="font-size: 13pt; text-align: center; display: table; margin: 0 auto;">
                     Aceptar y continuar
                 </button></a>

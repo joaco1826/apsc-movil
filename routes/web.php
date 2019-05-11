@@ -33,10 +33,13 @@ Route::get('/postulation', function () {
 
 Route::get('/vacants', 'PersonController@vacants');
 Route::get('/vacant/{id}', 'PersonController@vacant')->where(['id' => '[0-9-]+']);
+Route::get('/postulations', 'VacantController@postulations');
 
 Route::get('/curriculum-vitae', 'PersonController@create');
 Route::post('/curriculum-vitae', 'PersonController@store');
-Route::post('/postulate', 'PersonController@store');
+Route::post('/postulate', 'VacantController@postulate');
 
 Route::post('/login', 'PersonController@login');
 Route::post('/register', 'PersonController@registerPerson');
+
+Route::get('/logout', 'PersonController@logout');
