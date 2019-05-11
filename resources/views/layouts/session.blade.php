@@ -32,6 +32,16 @@
     </div>
     @php
         $person = session()->get('person');
+        $basic = \App\Models\Person::where("per_cod", $person->per_cod)->where("per_ciu", "<>", "")->count();
+        $studies = \App\Models\PersonStudy::where("per_cod", $person->per_cod)->count();
+        $experiencies = \App\Models\PersonExperience::where("per_cod", $person->per_cod)->count();
+        $references = \App\Models\PersonFamily::where("per_cod", $person->per_cod)->count();
+        $vacants = \App\Models\Vacant::where("req_fex", ">=", date("Y-m-d"))->count();
+        $percent = 10;
+        if ($basic > 0) $percent += 40;
+        if ($studies > 0) $percent += 20;
+        if ($experiencies > 0) $percent += 10;
+        if ($references > 0) $percent += 20;
     @endphp
     <div class="content-menu">
         @if ($person->per_fot != "")
@@ -41,8 +51,8 @@
         @endif
         <p class="title">{{ ucwords(mb_strtolower($person->per_pno . " " . $person->per_sno . " " . $person->per_pap . " " . $person->per_sap)) }}</p>
         <p class="sub-title">Finance Arrow Ltda.</p>
-        <div class="nav-hv mt-5"><a href="{{ url("/home") }}"><span>(20%)</span> Hoja de vida</a></div>
-        <div class="nav-hv border-0"><a href="{{ url("/vacants") }}"><span>(4)</span> Vacantes disponibles</a></div>
+        <div class="nav-hv mt-5"><a href="{{ url("/home") }}"><span>({{ $percent }}%)</span> Hoja de vida</a></div>
+        <div class="nav-hv border-0"><a href="{{ url("/vacants") }}"><span>({{ $vacants }})</span> Vacantes disponibles</a></div>
             <a href="{{ url("/logout") }}">
                 <div class="logout"><img src="{{ asset("img/close.png") }}" alt="logout"> Cerrar sesión</div>
             </a>

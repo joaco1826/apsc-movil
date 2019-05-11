@@ -20,9 +20,15 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function home()
     {
-        return view('index');
+        $auth = session()->get("person");
+        return view('home', [
+            "person" => Person::where("per_cod", $auth->per_cod)->where("per_ciu", "<>", "")->count(),
+            "studies" => PersonStudy::where("per_cod", $auth->per_cod)->count(),
+            "experiencies" => PersonExperience::where("per_cod", $auth->per_cod)->count(),
+            "references" => PersonFamily::where("per_cod", $auth->per_cod)->count()
+        ]);
     }
 
     public function register()
