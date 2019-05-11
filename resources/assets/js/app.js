@@ -133,4 +133,91 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#frmStudies').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            async:true,
+            type: "POST",
+            dataType: "json",
+            url:"/studies/create",
+            data: $(this).serialize(),
+            statusCode: {
+                201: function(data) {
+                    location.href="/studies";
+                },
+                400: function (data) {
+                    swal('¡Ups!', data.responseJSON.message, 'warning')
+                },
+                500: function (data) {
+                    swal('¡Ups!', 'Algo salió mal, contacte a su administrador', 'warning')
+                },
+
+                422: function (data) {
+                    $.each(data.responseJSON.errors, function (key, text) {
+                        swal(key, text, 'warning');
+                        return false;
+                    });
+                }
+            }
+        });
+    });
+
+    $('#frmExperiencies').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            async:true,
+            type: "POST",
+            dataType: "json",
+            url:"/experiencies/create",
+            data: $(this).serialize(),
+            statusCode: {
+                201: function(data) {
+                    location.href="/experiencies";
+                },
+                400: function (data) {
+                    swal('¡Ups!', data.responseJSON.message, 'warning')
+                },
+                500: function (data) {
+                    swal('¡Ups!', 'Algo salió mal, contacte a su administrador', 'warning')
+                },
+
+                422: function (data) {
+                    $.each(data.responseJSON.errors, function (key, text) {
+                        swal(key, text, 'warning');
+                        return false;
+                    });
+                }
+            }
+        });
+    });
+
+    $('#frmReferences').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            async:true,
+            type: "POST",
+            dataType: "json",
+            url:"/references/create",
+            data: $(this).serialize(),
+            statusCode: {
+                201: function(data) {
+                    location.href="/references";
+                },
+                400: function (data) {
+                    swal('¡Ups!', data.responseJSON.message, 'warning')
+                },
+                500: function (data) {
+                    swal('¡Ups!', 'Algo salió mal, contacte a su administrador', 'warning')
+                },
+
+                422: function (data) {
+                    $.each(data.responseJSON.errors, function (key, text) {
+                        swal(key, text, 'warning');
+                        return false;
+                    });
+                }
+            }
+        });
+    });
 });

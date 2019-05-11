@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\City;
+use App\Models\PersonExperience;
+use App\Models\PersonFamily;
+use App\Models\PersonStudy;
 use App\Models\Vacant;
 use Illuminate\Http\Request;
 use App\Models\Person;
@@ -213,5 +216,135 @@ class PersonController extends Controller
     {
         session()->flush();
         return redirect("/");
+    }
+
+    public function studies()
+    {
+        $auth = session()->get("person");
+        return view("studies", [
+            "studies" => PersonStudy::where("per_cod", $auth->per_cod)->orderByDesc("est_cod")->get()
+        ]);
+    }
+
+    public function studies_create(Request $request)
+    {
+        request()->validate([
+            "est_ent" => "required|string|min:3|max:255",
+            "est_pro" => "required|string|min:3|max:255",
+            "est_fec" => "required|date"
+        ]);
+
+        $auth = session()->get('person');
+
+        PersonStudy::create([
+            "per_cod" => $auth->per_cod,
+            "est_ent" => $request->est_ent,
+            "est_pro" => $request->est_pro,
+            "est_fec" => $request->est_fec
+        ]);
+
+        return response(json_encode(["message" => "Saved"]), 201)->header('Content-Type', 'text/json');
+
+    }
+
+    public function studies_delete($id)
+    {
+
+        $auth = session()->get('person');
+
+        $study = PersonStudy::where(["per_cod" => $auth->per_cod, "est_cod" => $id])->first();
+        $study->delete();
+
+        return redirect("/studies");
+
+    }
+
+    public function experiencies()
+    {
+        $auth = session()->get("person");
+        return view("experiencies", [
+            "experiencies" => PersonExperience::where("per_cod", $auth->per_cod)->orderByDesc("exp_cod")->get()
+        ]);
+    }
+
+    public function experiencies_create(Request $request)
+    {
+        request()->validate([
+            "exp_emp" => "required|string|min:3|max:255",
+            "exp_car" => "required|string|min:3|max:255",
+            "exp_ini" => "required|date",
+            "exp_mot" => "required|string|min:3|max:255",
+            "exp_des" => "required|string|min:3"
+        ]);
+
+        $auth = session()->get('person');
+
+        PersonExperience::create([
+            "per_cod" => $auth->per_cod,
+            "exp_emp" => $request->exp_emp,
+            "exp_car" => $request->exp_car,
+            "exp_ini" => $request->exp_ini,
+            "exp_ffi" => $request->exp_ffi,
+            "exp_mot" => $request->exp_mot,
+            "exp_des" => $request->exp_des
+        ]);
+
+        return response(json_encode(["message" => "Saved"]), 201)->header('Content-Type', 'text/json');
+
+    }
+
+    public function experiencies_delete($id)
+    {
+
+        $auth = session()->get('person');
+
+        $experiencie = PersonExperience::where(["per_cod" => $auth->per_cod, "exp_cod" => $id])->first();
+        $experiencie->delete();
+
+        return redirect("/experiencies");
+
+    }
+
+    public function references()
+    {
+        $auth = session()->get("person");
+        return view("references", [
+            "references" => PersonFamily::where("per_cod", $auth->per_cod)->orderByDesc("fam_cod")->get()
+        ]);
+    }
+
+    public function references_create(Request $request)
+    {
+        request()->validate([
+            "fam_nom" => "required|string|min:3|max:100",
+            "fam_par" => "required|string|min:3|max:50",
+            "fam_tel" => "required|string|min:7|max:30",
+            "fam_ocu" => "required|string|min:3|max:30"
+        ]);
+
+        $auth = session()->get('person');
+
+        PersonFamily::create([
+            "per_cod" => $auth->per_cod,
+            "fam_nom" => $request->fam_nom,
+            "fam_par" => $request->fam_par,
+            "fam_tel" => $request->fam_tel,
+            "fam_ocu" => $request->fam_ocu
+        ]);
+
+        return response(json_encode(["message" => "Saved"]), 201)->header('Content-Type', 'text/json');
+
+    }
+
+    public function references_delete($id)
+    {
+
+        $auth = session()->get('person');
+
+        $reference = PersonFamily::where(["per_cod" => $auth->per_cod, "fam_cod" => $id])->first();
+        $reference->delete();
+
+        return redirect("/references");
+
     }
 }

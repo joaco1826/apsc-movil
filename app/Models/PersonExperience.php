@@ -8,6 +8,10 @@ class PersonExperience extends Model
 {
     protected $table = "personas_exp";
 
+    protected $primaryKey = "exp_cod";
+
+    public $timestamps = false;
+
     protected $fillable = [
         "exp_cod",
         "exp_emp",

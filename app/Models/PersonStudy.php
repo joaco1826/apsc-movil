@@ -8,6 +8,10 @@ class PersonStudy extends Model
 {
     protected $table = "personas_estudios";
 
+    protected $primaryKey = "est_cod";
+
+    public $timestamps = false;
+
     protected $fillable = [
         "est_cod",
         "est_ent",

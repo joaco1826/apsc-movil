@@ -41,5 +41,26 @@ Route::post('/postulate', 'VacantController@postulate');
 
 Route::post('/login', 'PersonController@login');
 Route::post('/register', 'PersonController@registerPerson');
+//Studies
+Route::get('/studies', 'PersonController@studies');
+Route::get('/studies/create', function () {
+    return view('studies-create');
+});
+Route::post('/studies/create', 'PersonController@studies_create');
+Route::get('/studies/delete/{id}', 'PersonController@studies_delete')->where(['id' => '[0-9-]+']);
+//Experiencies
+Route::get('/experiencies', 'PersonController@experiencies');
+Route::get('/experiencies/create', function () {
+    return view('experiencies-create');
+});
+Route::post('/experiencies/create', 'PersonController@experiencies_create');
+Route::get('/experiencies/delete/{id}', 'PersonController@experiencies_delete')->where(['id' => '[0-9-]+']);
+//References
+Route::get('/references', 'PersonController@references');
+Route::get('/references/create', function () {
+    return view('references-create');
+});
+Route::post('/references/create', 'PersonController@references_create');
+Route::get('/references/delete/{id}', 'PersonController@references_delete')->where(['id' => '[0-9-]+']);
 
 Route::get('/logout', 'PersonController@logout');

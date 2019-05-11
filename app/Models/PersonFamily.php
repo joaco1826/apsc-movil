@@ -8,6 +8,10 @@ class PersonFamily extends Model
 {
     protected $table = "personas_fam";
 
+    protected $primaryKey = "fam_cod";
+
+    public $timestamps = false;
+
     protected $fillable = [
         "fam_cod",
         "fam_nom",
